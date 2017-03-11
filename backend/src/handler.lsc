@@ -1,0 +1,29 @@
+import 'babel-polyfill'
+
+
+import getTrip from './getTrip'
+import getPlacesFromTrip from './getPlacesFromTrip'
+import getAllSongs from './getAllSongs'
+import chooseBestSong from './chooseBestSong'
+import makePlaylist from './makePlaylist'
+
+module.exports.hello(event, context, callback) -/>
+  console.log(event)
+  { origin, destination } = event
+  trip <- getTrip(origin, destination)
+  places <- getPlacesFromTrip(trip)
+  chosenSongs <- [for place of places:
+    songs = getAllSongs(place)
+    chooseBestSong(place, songs)
+  ]
+  playlist <- makePlaylist(chosenSongs)
+
+  response = {
+    statusCode: 200
+    body: JSON.stringify({
+      message: { trip, places, chosenSongs, playlist }
+      input: event
+    })
+  }
+
+  callback(null, response)
