@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const babel = require('babel-loader');
 const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const BUILD_DIR = path.resolve(__dirname, 'frontend/dist');
 const APP_DIR = path.resolve(__dirname, 'frontend/src');
@@ -13,18 +14,23 @@ module.exports = {
     path: BUILD_DIR,
     filename: 'bundle.js',
   },
-  module : {
-    loaders : [
+  module: {
+    loaders: [
       {
-        test : /\.jsx?/,
-        include : APP_DIR,
-        loader : 'babel-loader'
+        test: /\.jsx?/,
+        include: APP_DIR,
+        loader: 'babel-loader'
       },
       {
-        test : /\.lsc/,
-        include : APP_DIR,
-        loader : 'babel-loader'
+        test: /\.lsc/,
+        include: APP_DIR,
+        loader: 'babel-loader'
       },
-    ]
-  }
+    ],
+  },
+  plugins: [
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, "frontend"),
+  },
 }
