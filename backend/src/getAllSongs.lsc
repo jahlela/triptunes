@@ -1,2 +1,33 @@
-export default getAllSongs() ->
-  [{}]
+import fetch from 'isomorphic-fetch'
+import cheerio from 'cheerio'
+
+createSearchUrl(query) ->
+  `http://www.lyrics.com/lyrics/${encodeURIComponent(query)}`
+
+cleanStr(str) ->
+  str.replace(/\s+/g, ' ').trim()
+
+export default getAllSongs(place) -/>
+  url = createSearchUrl(place.name)
+
+  response <- fetch(url)
+
+  html <- response.text()
+
+  $ = cheerio.load(html)
+  sections = $('.sec-lyric')
+
+  sections.map((i, element) -> {
+    songName = $(this)
+      .find('.lyric-meta-title')
+      .text()
+      ~cleanStr()
+
+    artistName = $(this)
+      .find('.lyric-meta-album-artist')
+      .text()
+      ~cleanStr()
+
+    console.log({ songName, artistName })
+    { songName, artistName }
+  })

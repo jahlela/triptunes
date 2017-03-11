@@ -1,2 +1,4 @@
 export default getPlacesFromTrip() ->
-  [{}]
+  [{
+    "name": "San Francisco"
+  }]
