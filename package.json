@@ -1,0 +1,30 @@
+{
+  "name": "triptunes",
+  "version": "1.0.0",
+  "description": "Use TripTunes to create a Spotify playlist of songs that mention towns you will drive through",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jahlela/triptunes.git"
+  },
+  "author": "Alex Rattray <rattray.alex@gmail.com> (http://alexrattray.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jahlela/triptunes/issues"
+  },
+  "homepage": "https://github.com/jahlela/triptunes#readme",
+  "devDependencies": {
+    "yarn": "^0.21.3"
+  },
+  "dependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-loader": "^6.4.0",
+    "babel-preset-lightscript": "^0.1.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "webpack": "^2.2.1"
+  }
+}
