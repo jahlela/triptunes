@@ -7,8 +7,8 @@ import getAllSongs from './getAllSongs'
 import chooseBestSong from './chooseBestSong'
 import makePlaylist from './makePlaylist'
 
+
 module.exports.hello(event, context, callback) -/>
-  console.log(event)
   { origin, destination } = event
   trip <- getTrip(origin, destination)
   places <- getPlacesFromTrip(trip)

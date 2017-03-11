@@ -29,6 +29,7 @@
     "yarn": "^0.21.3"
   },
   "dependencies": {
+    "@google/maps": "^0.3.1",
     "babel-cli": "^6.23.0",
     "babel-loader": "^6.4.0",
     "babel-preset-lightscript": "^0.1.1",
