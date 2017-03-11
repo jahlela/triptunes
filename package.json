@@ -20,8 +20,7 @@
   "homepage": "https://github.com/jahlela/triptunes#readme",
   "devDependencies": {
     "serve": "^5.0.2",
-    "webpack-dev-server": "^2.4.1",
-    "yarn": "^0.21.3"
+    "webpack-dev-server": "^2.4.1"
   },
   "dependencies": {
     "babel-cli": "^6.23.0",
