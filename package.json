@@ -5,8 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "dev": "webpack-dev-server --open"
+    "build:client": "webpack",
+    "build:lsc": "babel backend/src --out-dir backend/lsc --plugins=lightscript -x .lsc",
+    "build:env": "babel backend/lsc --out-dir backend/dist --presets=env",
+    "build:backend": "npm run build:lsc && npm run build:env",
+    "build": "npm run build:client && npm run build:backend",
+    "dev": "webpack-dev-server --open --watch"
   },
   "repository": {
     "type": "git",

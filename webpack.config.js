@@ -24,7 +24,10 @@ module.exports = {
       {
         test: /\.lsc/,
         include: APP_DIR,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        query: {
+          presets: ['lightscript']
+        }
       },
     ],
   },
