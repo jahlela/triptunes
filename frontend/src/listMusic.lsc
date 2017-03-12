@@ -2,37 +2,90 @@ import React from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import TextField from 'material-ui/TextField'
+import url from 'url'
 import SongItem from './songItem.lsc'
 import { browserHistory } from 'react-router'
+import fakeResponse from './fakeResponse.lsc'
 
+SpotifyEmbed({ uri }) ->
+  src = `https://embed.spotify.com/?uri=${uri}`
+  <iframe
+    src={src}
+    width="300"
+    height="100"
+    frameBorder="0"
+    allowTransparency="true"
+  />
+
+GoogleMapsEmbed({ origin, destination, waypoints }) ->
+  key = 'AIzaSyD9NCyfJnTGTB3dy6vhtj6sAdPbbqWBbf0'
+  params = url.format({ query: { key, origin, destination }})
+  waypointParams =
+    if waypoints: '&waypoints='+waypoints.join('|')
+    else: ''
+  src = 'https://www.google.com/maps/embed/v1/directions' + params + waypointParams
+
+  <iframe
+    src={src}
+    width="100%"
+    height="450"
+    frameBorder="0"
+    allowFullscreen
+  />
+
+TrackRow({ track: { track, place } }) ->
+  <tr>
+    <td>
+      {place.name}
+    </td>
+    <td>
+      {track.name} by {track.artistName}
+    </td>
+    <td>
+      <SpotifyEmbed uri={track.uri} />
+    </td>
+  </tr>
 
 export default class ListMusic extends React.Component:
-  getData() ->
-    [
-      {
-        artist:'asdf'
-        album:'adaf'
-        title:'what up!'
-      }
-      {
-        artist:'asdf'
-        album:'adaf'
-        title:'what up!'
-      }
-    ]
-
-  getListItem(songs) ->
-    songs.map((s, i) =>
-      <SongItem key={i} song={s}/>
-    )
-
   render() ->
+    tracks = fakeResponse
     style = {
       margin: 12
     }
-    <div>
-      <MuiThemeProvider>
-        <RaisedButton label="Primary" primary={true} style={style} />
-      </MuiThemeProvider>
-      {this.getListItem(this.getData())}
+    <div className="container">
+      <div className="row">
+        <div className="col-md-6">
+          <div className="hover-box">
+            <GoogleMapsEmbed
+              origin='Los Angeles, CA'
+              destination='San Francisco, CA'
+              waypoints={['Monterey']}
+            />
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="hover-box">
+            <table className="table table-bordered table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>
+                    When yer passin' through
+                  </th>
+                  <th>
+                    You'll listen to
+                  </th>
+                  <th>
+                    on Spotify
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {tracks.map((track, i) =>
+                  <TrackRow key={i} track={track}/>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
