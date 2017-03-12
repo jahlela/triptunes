@@ -1,18 +1,13 @@
 import 'babel-polyfill'
 
-import maps from '@google/maps'
+import { flatten } from 'lodash'
+
+import mapsClient from './googleMapsClient'
 
 
-client = maps.createClient({
-  key: process.env.GOOGLE_MAPS_KEY
-  Promise
-})
-
-flatten(array) ->
-  array.reduce((arr1, arr2) -> arr1.concat(arr2), [])
 
 export default getTrip(origin, destination) -/>
-  response <- client.directions({
+  response <- mapsClient.directions({
     origin
     destination
   }).asPromise()
@@ -23,5 +18,8 @@ export default getTrip(origin, destination) -/>
   // Combine all the steps of legs into a single list
   steps = flatten(trip.legs.map(leg => leg.steps))
 
+  // Drop steps less than 3km in length
+  longSteps = steps.filter(step -> step.distance.value > 3000)
+
   // We care about the start locations
-  steps.map(step => step.start_location)
+  longSteps.map(step => step.start_location)
