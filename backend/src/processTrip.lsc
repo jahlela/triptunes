@@ -1,0 +1,26 @@
+import { union } from 'lodash'
+
+import getTrip from './getTrip'
+import getPlacesFromTrip from './getPlacesFromTrip'
+import getAllSongs from './getAllSongs'
+import chooseBestSong from './chooseBestSong'
+import makePlaylist from './makePlaylist'
+
+
+processTrip(origin, destination) -/>
+  console.log({ origin, destination })
+  console.log({ origin, destination })
+  tripCoordinates <- getTrip(origin, destination)
+
+  tripPlaces <- getPlacesFromTrip(tripCoordinates)
+
+  places = union([origin, destination], tripPlaces)
+
+  chosenSongs <- Promise.all(places.map((place) -/> {
+    songs <- getAllSongs(place)
+    chooseBestSong(place, songs)
+  }))
+
+  { tripCoordinates, places, chosenSongs }
+
+export default processTrip

@@ -15,8 +15,9 @@ export default chooseBestSong(place, songs) -/>
     // grab JSON from Spotify query
     response <- fetch(songQuery)
     responseJSON <- response.json()
+    tracks = responseJSON?.tracks?.items or []
 
-    for track of responseJSON.tracks.items:
+    for track of tracks:
       { id, uri, name, popularity } = track
       albumImage = track.album.images[0].url
 
