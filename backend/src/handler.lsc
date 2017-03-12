@@ -12,10 +12,11 @@ module.exports.hello(event, context, callback) -/>
   { origin, destination } = event
   trip <- getTrip(origin, destination)
   places <- getPlacesFromTrip(trip)
-  chosenSongs <- [for place of places:
-    songs = getAllSongs(place)
+  chosenSongs <- places.map((place) -/> {
+    songs <- getAllSongs(place)
+    console.log({songs})
     chooseBestSong(place, songs)
-  ]
+  })
   playlist <- makePlaylist(chosenSongs)
 
   response = {

@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import cheerio from 'cheerio'
+import { toArray } from 'lodash'
 
 createSearchUrl(query) ->
   `http://www.lyrics.com/lyrics/${encodeURIComponent(query)}`
@@ -18,7 +19,7 @@ export default getAllSongs(place) -/>
   sections = $('.sec-lyric')
 
   sections.map((i, element) -> {
-    songName = $(this)
+    trackTitle = $(this)
       .find('.lyric-meta-title')
       .text()
       ~cleanStr()
@@ -28,6 +29,6 @@ export default getAllSongs(place) -/>
       .text()
       ~cleanStr()
 
-    console.log({ songName, artistName })
-    { songName, artistName }
-  })
+    console.log({ trackTitle, artistName })
+    { trackTitle, artistName }
+  })~toArray()
