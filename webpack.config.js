@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const babel = require('babel-loader');
 const path = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const BUILD_DIR = path.resolve(__dirname, 'frontend/dist');
 const APP_DIR = path.resolve(__dirname, 'frontend/src');
@@ -9,7 +8,7 @@ const APP_DIR = path.resolve(__dirname, 'frontend/src');
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: APP_DIR + '/index.js',
+  entry: APP_DIR + '/main.js',
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js',
@@ -17,16 +16,11 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.jsx?/,
-        include: APP_DIR,
-        loader: 'babel-loader'
-      },
-      {
-        test: /\.lsc/,
+        test: /\.(lsc|jsx?)/,
         include: APP_DIR,
         loader: 'babel-loader',
         query: {
-          presets: ['lightscript']
+          presets: ['react']
         }
       },
     ],

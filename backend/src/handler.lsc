@@ -18,12 +18,15 @@ module.exports.hello(event, context, callback) -/>
 
   places = union([origin, destination], tripPlaces)
 
-  chosenSongs <- [for place of places:
-    songs = getAllSongs(place)
-    chooseBestSong(place, songs)
-  ]
+  trip <- getTrip(origin, destination)
+  places <- getPlacesFromTrip(trip)
 
   playlist <- makePlaylist(chosenSongs)
+
+  chosenSongs <- places.map((place) -/> {
+    songs <- getAllSongs(place)
+    chooseBestSong(place, songs)
+  })
 
   response = {
     statusCode: 200

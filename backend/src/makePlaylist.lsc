@@ -1,2 +1,32 @@
-export default makePlaylist() ->
-  {}
+import fetch from 'isomorphic-fetch'
+
+userId = 'mouseplatterman'
+
+createPlaylist(tripName) -/>
+  url = `https://api.spotify.com/v1/users/${userId}/playlists`
+  method = 'POST'
+  headers = {
+    'Authorization': 'Basic '+btoa('username:password')
+    'Content-Type': 'application/json'
+  }
+  body = {
+    name: tripName
+  }
+  response <- fetch(url, { method, headers, body })
+  playlist <- response.json()
+  playlist.id
+
+addTracksToPlaylist(playlistId, uris) -/>
+  url = `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`
+  method = 'POST'
+  headers = {
+    'Authorization': 'Basic '+btoa('username:password')
+    'Content-Type': 'application/json'
+  }
+  body = { uris }
+  <- fetch(url, { method, headers, body })
+
+
+export default makePlaylist(trip, songs) -/>
+  playlistId <- createPlaylist(trip.name)
+  <- addTracksToPlaylist(playlistId, [ for track of tracks: track.uri ])
