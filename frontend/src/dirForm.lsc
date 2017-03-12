@@ -25,9 +25,14 @@ export default class DestinationForm extends React.Component:
     if text:
       alert(text);
     else
-      getSongsForOrigDest('San Francisco', 'Seattle').then((result) => {
-      this.props.history.push('./show-list')
-    })
+      { origin = 'Los Angeles', destination = 'San Francisco' } = this.state
+      getSongsForOrigDest(origin, destination)
+        .then(({ message: { places }}) => {
+          console.log({ places })
+          localStorage.setItem('places', JSON.stringify(places))
+          this.props.history.push('./show-list')
+        })
+  
   validateForm() ->
     s = this.state
     console.log(s.origin);
@@ -38,6 +43,7 @@ export default class DestinationForm extends React.Component:
     elif s.destination == '':
        "Please select a destination"
     else: false
+
   render() ->
     <div className="mainForm">
       <div className="originRow row">

@@ -9,8 +9,7 @@ cleanStr(str) ->
   str.replace(/\s+/g, ' ').trim()
 
 export default getAllSongs(place) -/>
-  url = createSearchUrl(place.name)
-
+  url = createSearchUrl(place)
   response <- fetch(url)
 
   html <- response.text()
@@ -29,6 +28,6 @@ export default getAllSongs(place) -/>
       .text()
       ~cleanStr()
 
-    console.log({ trackTitle, artistName })
-    { trackTitle, artistName }
+    console.log({ trackTitle, artistName, place })
+    { trackTitle, artistName, place }
   })~toArray()

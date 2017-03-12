@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch'
-import { sortBy, reverse } from 'lodash'
+import { sortBy, reverse, slice, reduce } from 'lodash'
 
 // Take a place and a list of all song matches and selects most popular from Spotify results
-export default chooseBestSong(place, songs) -/>
+export default chooseBestTracks(place, songs) -/>
   // for each song, create Spotify query URL
   // Ex. https://api.spotify.com/v1/search?q=track:san%20francisco%20lights%20artist:bobbi%20humphrey&type=track
   // https://api.spotify.com/v1/search?q=track:{trackTitle}%20artist:{artistName}&type=track
@@ -15,16 +15,27 @@ export default chooseBestSong(place, songs) -/>
     // grab JSON from Spotify query
     response <- fetch(songQuery)
     responseJSON <- response.json()
+    tracks = responseJSON?.tracks?.items or []
 
-    for track of responseJSON.tracks.items:
+    for track of tracks:
       { id, uri, name, popularity } = track
-      albumImage = track.album.images[0].url
+      albumImage = track.album?.images?[0]?.url or ''
 
       // push all songs into allSongs
-      allSongs.push({ id, uri, name, popularity, artistName, albumImage })
+      allSongs.push({ place, id, uri, name, popularity, artistName, albumImage })
 
   // find most popular song from allSongs
-  mostPopularSong = allSongs~sortBy('popularity')~reverse()[0]
-  console.log(mostPopularSong)
+  mostPopularSongs = allSongs
+    ~sortBy('popularity')
+    ~reverse()
+    ~reduce(({ titles, tracks }, track) => {
+      if not titles[track.name]:
+        titles[track.name] = true
+        tracks.push(track)
+      { titles, tracks }
+    }, { titles: {}, tracks: [] })
+    .tracks
+    ~slice(0, 3)
+  console.log({ place, mostPopularSongs })
 
-  return mostPopularSong
+  return mostPopularSongs

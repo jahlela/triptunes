@@ -1,32 +1,24 @@
 import 'babel-polyfill'
-
-import { union } from 'lodash'
-
-import getTrip from './getTrip'
-import getPlacesFromTrip from './getPlacesFromTrip'
-import getAllSongs from './getAllSongs'
-import chooseBestSong from './chooseBestSong'
-import makePlaylist from './makePlaylist'
-
+import { isEmpty, union } from 'lodash'
+import processTrip from './processTrip'
 
 module.exports.hello(event, context, callback) -/>
-  { origin, destination } = event
+  query = event?.queryStringParameters or {}
+  { origin, destination } = query
 
-  tripCoordinates <- getTrip(origin, destination)
+  if origin~isEmpty() or destination~isEmpty():
+    callback('Specify origin and destination via GET; got: ' + JSON.stringify({event}))
+    return
 
-  tripPlaces <- getPlacesFromTrip(tripCoordinates)
-
-  places = union([origin, destination], tripPlaces)
-
-  chosenSongs <- places.map((place) -/> {
-    songs <- getAllSongs(place)
-    chooseBestSong(place, songs)
-  })
+  // whoops lightscript problem, should just be `<!-` not `<- <!-`, but this works
+  // (<!- wraps it in a try/catch)
+  message <- <!- processTrip(origin, destination)
+  console.log('got message', message)
 
   response = {
     statusCode: 200
     body: JSON.stringify({
-      message: { tripCoordinates, places, chosenSongs }
+      message
       input: event
     })
   }
