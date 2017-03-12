@@ -10,7 +10,8 @@
     "build:env": "babel backend/lsc --out-dir backend/dist --presets=env",
     "build:backend": "npm run build:lsc && npm run build:env",
     "build": "npm run build:client && npm run build:backend",
-    "dev": "webpack-dev-server --open --watch"
+    "dev": "webpack --watch",
+    "serve": "./node_modules/.bin/serve frontend"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
   "dependencies": {
     "babel-cli": "^6.23.0",
     "babel-loader": "^6.4.0",
+    "babel-preset-env": "^1.2.1",
     "babel-preset-lightscript": "^0.1.1",
     "cheerio": "^0.22.0",
     "lodash": "^4.17.4",
