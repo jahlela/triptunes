@@ -1,0 +1,38 @@
+import React from 'react'
+import RaisedButton from 'material-ui/RaisedButton'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import TextField from 'material-ui/TextField'
+import SongItem from './songItem.lsc'
+import { browserHistory } from 'react-router'
+
+
+export default class ListMusic extends React.Component:
+  getData() ->
+    [
+      {
+        artist:'asdf'
+        album:'adaf'
+        title:'what up!'
+      }
+      {
+        artist:'asdf'
+        album:'adaf'
+        title:'what up!'
+      }
+    ]
+
+  getListItem(songs) ->
+    songs.map((s, i) =>
+      <SongItem key={i} song={s}/>
+    )
+
+  render() ->
+    style = {
+      margin: 12
+    }
+    <div>
+      <MuiThemeProvider>
+        <RaisedButton label="Primary" primary={true} style={style} />
+      </MuiThemeProvider>
+      {this.getListItem(this.getData())}
+    </div>
