@@ -61,15 +61,14 @@ TrackRow({ track: { tracks, place } }) ->
     </td>
   </tr>
 
-export default class ListMusic extends React.Component:
+export default class MusicList extends React.Component:
   render() ->
     tracks = JSON.parse(localStorage.getItem('places') or '{}') or fakeResponse
 
     style = {
       margin: 12
     }
-    <div className="container">
-      <MainTitle/>
+    <div className="container mainResultsContainer">
       <div className="row">
         <div className="col-md-6">
           <div className="hover-box">
@@ -86,13 +85,13 @@ export default class ListMusic extends React.Component:
               <thead>
                 <tr>
                   <th>
-                    When yer passin' through
+                    City
                   </th>
                   <th>
-                    You'll listen to
+                    Song Info
                   </th>
                   <th>
-                    on Spotify
+                    Tunes
                   </th>
                 </tr>
               </thead>
