@@ -10,8 +10,7 @@
     "build:env": "babel backend/lsc --out-dir backend/dist --presets=env",
     "build:backend": "npm run build:lsc && npm run build:env",
     "build": "npm run build:client && npm run build:backend",
-    "dev": "webpack --watch",
-    "serve": "./node_modules/.bin/serve frontend"
+    "dev": "webpack --watch"
   },
   "repository": {
     "type": "git",
