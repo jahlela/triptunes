@@ -2,18 +2,19 @@ import React from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Paper from 'material-ui/Paper'
+import { entries } from 'lodash'
 
-export default class SongItem extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-  getInformation() -> {
+export default class SongItem extends React.Component:
+  getInformation() ->
     song = this.props.song
     Array.from(Object.entries(song)).map(([key, value]) =>
       <li key={key}>{key}: {value}</li>
     )
-  }
-  render() -> {
+    [for [key, value] of song~entries():
+      <li key={key}>{key}: {value}</li>
+    ]
+
+  render() ->
     style = {
       height: 100
       width: 400
@@ -28,5 +29,3 @@ export default class SongItem extends React.Component {
         </ul>
       </Paper>
     </MuiThemeProvider>
-  }
-}

@@ -5,24 +5,24 @@ import TextField from 'material-ui/TextField'
 import { browserHistory } from 'react-router'
 import { getSongsForOrigDest } from './api'
 
-export default class DestinationForm extends React.Component {
-  constructor(props) {
+export default class DestinationForm extends React.Component:
+  constructor(props) ->
     super(props)
     this.onChange = this.onChange.bind(this)
     this.submit = this.submit.bind(this)
     this.state = { form: '', to: '' }
-  }
-  onChange(event, value) -> {
+
+  onChange(event, value) ->
     target = event.target
     this.setState({ [target.name.id]: value })
-  }
-  submit() -> {
+
+  submit() ->
     getSongsForOrigDest('San Francisco', 'Seattle').then((result) => {
       console.log(result)
       this.props.history.push('./show-list')
     })
-  }
-  render() -> {
+
+  render() ->
     <div>
       <div className="row">
         <div className="col-md-4 col-md-offset-4">
@@ -63,5 +63,3 @@ export default class DestinationForm extends React.Component {
         </div>
       </div>
     </div>
-  }
-}

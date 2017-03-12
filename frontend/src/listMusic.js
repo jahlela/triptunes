@@ -6,8 +6,8 @@ import SongItem from './songItem'
 import { browserHistory } from 'react-router'
 
 
-export default class ListMusic extends React.Component {
-  getData() -> {
+export default class ListMusic extends React.Component:
+  getData() ->
     [
       {
         artist:'asdf'
@@ -20,13 +20,13 @@ export default class ListMusic extends React.Component {
         title:'what up!'
       }
     ]
-  }
-  getListItem(songs) -> {
+
+  getListItem(songs) ->
     songs.map((s, i) =>
       <SongItem key={i} song={s}/>
     )
-  }
-  render() -> {
+
+  render() ->
     style = {
       margin: 12
     }
@@ -36,5 +36,3 @@ export default class ListMusic extends React.Component {
       </MuiThemeProvider>
       {this.getListItem(this.getData())}
     </div>
-  }
-}
