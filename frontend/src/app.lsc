@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from 'react-router-dom'
+import MainTitle from './title.lsc'
 import DestinationForm from './dirForm.lsc'
 import MusicList from './listMusic.lsc'
 // Needed for onTouchTap
@@ -14,6 +15,7 @@ injectTapEventPlugin()
 BasicExample() =>
   <Router>
     <div className="mainApp container">
+      <Route path="/" component={MainTitle}/>
       <Route exact path="/" component={DestinationForm}/>
       <Route path="/show-list" component={MusicList}/>
     </div>

@@ -23,9 +23,9 @@ export default class DestinationForm extends React.Component:
     })
 
   render() ->
-    <div>
+    <div className="mainForm">
       <div className="row">
-        <div className="col-md-4 col-md-offset-4">
+        <div className="formContents col-md-4 col-md-offset-4">
           <MuiThemeProvider>
             <TextField
               id="origin"
@@ -39,7 +39,7 @@ export default class DestinationForm extends React.Component:
         </div>
       </div>
       <div className="row">
-        <div className="col-md-4 col-md-offset-4">
+        <div className="formContents col-md-4 col-md-offset-4">
           <MuiThemeProvider>
             <TextField
               id="destination"
