@@ -14,8 +14,8 @@ injectTapEventPlugin();
 const BasicExample = () => (
   <Router>
     <div className="container">
-        <Route exact path="/" component={DestinationForm}/>
-        <Route path="/show-list" component={MusicList}/>
+      <Route exact path="/" component={DestinationForm}/>
+      <Route path="/show-list" component={MusicList}/>
     </div>
   </Router>
 )
