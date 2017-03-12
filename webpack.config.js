@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const babel = require('babel-loader');
 const path = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const BUILD_DIR = path.resolve(__dirname, 'frontend/dist');
 const APP_DIR = path.resolve(__dirname, 'frontend/src');
