@@ -25,6 +25,7 @@
   "devDependencies": {
     "serve": "^5.0.2",
     "serverless": "^1.8.0",
+    "serverless-offline": "^3.10.2",
     "webpack-dev-server": "^2.4.1",
     "yarn": "^0.21.3"
   },

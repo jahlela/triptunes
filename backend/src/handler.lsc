@@ -1,6 +1,6 @@
 import 'babel-polyfill'
 
-import { union } from 'lodash'
+import { isBlank, union } from 'lodash'
 
 import getTrip from './getTrip'
 import getPlacesFromTrip from './getPlacesFromTrip'
@@ -11,6 +11,11 @@ import makePlaylist from './makePlaylist'
 
 module.exports.hello(event, context, callback) -/>
   { origin, destination } = event
+
+  if origin~isBlank() or destination~isBlank() {
+    callback('Specify origin and destionation via GET')
+    return
+  }
 
   tripCoordinates <- getTrip(origin, destination)
 
