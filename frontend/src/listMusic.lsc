@@ -29,10 +29,14 @@ GoogleMapsEmbed({ origin, destination, waypoints }) ->
     width="100%"
     height="450"
     frameBorder="0"
-    allowFullscreen
+    allowFullScreen
   />
 
-TrackRow({ track: { track, place } }) ->
+TrackRow({ track: { tracks, place } }) ->
+  if not tracks: return null
+  track = tracks.0
+  if not track: return null
+
   <tr>
     <td>
       {place.name}
@@ -47,7 +51,8 @@ TrackRow({ track: { track, place } }) ->
 
 export default class ListMusic extends React.Component:
   render() ->
-    tracks = fakeResponse
+    tracks = JSON.parse(localStorage.getItem('places') or '{}') or fakeResponse
+
     style = {
       margin: 12
     }

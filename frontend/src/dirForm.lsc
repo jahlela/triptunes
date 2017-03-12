@@ -10,17 +10,20 @@ export default class DestinationForm extends React.Component:
     super(props)
     this.onChange = this.onChange.bind(this)
     this.submit = this.submit.bind(this)
-    this.state = { form: '', to: '' }
+    this.state = { origin: '', destination: '' }
 
   onChange(event, value) ->
     target = event.target
-    this.setState({ [target.name.id]: value })
+    this.setState({ [target.id]: event.target.value })
 
   submit() ->
-    getSongsForOrigDest('San Francisco', 'Seattle').then((result) => {
-      console.log(result)
-      this.props.history.push('./show-list')
-    })
+    { origin = 'Los Angeles', destination = 'San Francisco' } = this.state
+    getSongsForOrigDest(origin, destination)
+      .then(({ message: { places }}) => {
+        console.log({ places })
+        localStorage.setItem('places', JSON.stringify(places))
+        this.props.history.push('./show-list')
+      })
 
   render() ->
     <div className="mainForm">
