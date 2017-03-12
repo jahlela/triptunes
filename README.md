@@ -15,6 +15,10 @@ In a separate tab:
     npm run dev:backend
 
 ## APIs and Tools
+Syntax: http://www.lightscript.org/
+
+Interface: https://facebook.github.io/react/
+
 Playlists: https://www.spotify.com/us/
 
 Maps: https://www.maps.google.com
