@@ -58,7 +58,7 @@ export default class MusicList extends React.Component:
     style = {
       margin: 12
     }
-    <div className="container">
+    <div className="container mainResultsContainer">
       <div className="row">
         <div className="col-md-6">
           <div className="hover-box">
@@ -75,13 +75,13 @@ export default class MusicList extends React.Component:
               <thead>
                 <tr>
                   <th>
-                    When you drive through
+                    City
                   </th>
                   <th>
-                    You'll hear
+                    Song Info
                   </th>
                   <th>
-                    on Spotify
+                    Tunes
                   </th>
                 </tr>
               </thead>
