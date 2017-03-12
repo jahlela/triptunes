@@ -6,6 +6,7 @@ import MainTitle from './mainTitle.lsc'
 import SpotifyButton from './spotifyButton.lsc'
 import { browserHistory } from 'react-router'
 import { getSongsForOrigDest } from './api.lsc'
+import { isEmpty } from 'lodash'
 
 export default class DestinationForm extends React.Component:
   constructor(props) ->
@@ -20,11 +21,10 @@ export default class DestinationForm extends React.Component:
     this.setState({ [target.id]: value })
 
   submit() ->
-    const text = this.validateForm();
-    console.log(text);
+    text = this.validateForm()
     if text:
-      alert(text);
-    else
+      alert(text)
+    else:
       { origin = 'Los Angeles', destination = 'San Francisco' } = this.state
       getSongsForOrigDest(origin, destination)
         .then(({ message: { places }}) => {
@@ -32,16 +32,15 @@ export default class DestinationForm extends React.Component:
           localStorage.setItem('places', JSON.stringify(places))
           this.props.history.push('./show-list')
         })
-  
+
   validateForm() ->
-    s = this.state
-    console.log(s.origin);
-    if s.origin == '' and s.destination == '':
-       "Please select an origin and destination"
-    elif s.origin = '':
-       "Please select a origin"
-    elif s.destination == '':
-       "Please select a destination"
+    { origin, destination } = this.state
+    if origin~isEmpty() and destination~isEmpty():
+      "Please select an origin and destination"
+    elif origin~isEmpty():
+      "Please select a origin"
+    elif destination~isEmpty():
+      "Please select a destination"
     else: false
 
   render() ->
