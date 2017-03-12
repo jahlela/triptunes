@@ -18,11 +18,6 @@ module.exports.hello(event, context, callback) -/>
 
   places = union([origin, destination], tripPlaces)
 
-  trip <- getTrip(origin, destination)
-  places <- getPlacesFromTrip(trip)
-
-  playlist <- makePlaylist(chosenSongs)
-
   chosenSongs <- places.map((place) -/> {
     songs <- getAllSongs(place)
     chooseBestSong(place, songs)
@@ -31,7 +26,7 @@ module.exports.hello(event, context, callback) -/>
   response = {
     statusCode: 200
     body: JSON.stringify({
-      message: { tripCoordinates, places, chosenSongs, playlist }
+      message: { tripCoordinates, places, chosenSongs }
       input: event
     })
   }
