@@ -4,10 +4,10 @@ export default [
       name: 'Some Place'
     }
     track: {
-      id: '123'
-      uri: 'spotify:track:123'
-      name: 'A great song'
-      artistName: 'A great singer'
+      id: '0qLMogpL6n41qhzmFJnhfS'
+      uri: 'spotify:track:0qLMogpL6n41qhzmFJnhfS'
+      name: 'The Lines'
+      artistName: 'Beartooth'
       popularity: 50
     }
   }

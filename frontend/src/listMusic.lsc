@@ -3,7 +3,6 @@ import RaisedButton from 'material-ui/RaisedButton'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import TextField from 'material-ui/TextField'
 import url from 'url'
-import SongItem from './songItem.lsc'
 import { browserHistory } from 'react-router'
 import fakeResponse from './fakeResponse.lsc'
 
