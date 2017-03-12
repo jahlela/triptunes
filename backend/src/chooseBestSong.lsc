@@ -17,16 +17,14 @@ export default chooseBestSong(place, songs) -/>
     responseJSON <- response.json()
 
     for track of responseJSON.tracks.items:
-      trackID = track.id
-      trackName = track.name
-      trackPop = track.popularity
+      { id, uri, name, popularity } = track
       albumImage = track.album.images[0].url
 
       // push all songs into allSongs
-      allSongs.push({ trackID, trackName, trackPop, albumImage })
+      allSongs.push({ id, uri, name, popularity, artistName, albumImage })
 
   // find most popular song from allSongs
-  mostPopularSong = allSongs~sortBy('trackPop')~reverse()[0]
+  mostPopularSong = allSongs~sortBy('popularity')~reverse()[0]
   console.log(mostPopularSong)
 
   return mostPopularSong

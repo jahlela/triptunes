@@ -8,7 +8,7 @@ const APP_DIR = path.resolve(__dirname, 'frontend/src');
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: APP_DIR + '/index.js',
+  entry: APP_DIR + '/main.lsc',
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js',
@@ -16,16 +16,11 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.jsx?/,
-        include: APP_DIR,
-        loader: 'babel-loader'
-      },
-      {
-        test: /\.lsc/,
+        test: /\.(lsc|jsx?)/,
         include: APP_DIR,
         loader: 'babel-loader',
         query: {
-          presets: ['lightscript']
+          presets: ['lightscript'],
         }
       },
     ],

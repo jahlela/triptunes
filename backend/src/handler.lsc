@@ -17,12 +17,11 @@ module.exports.hello(event, context, callback) -/>
     console.log({songs})
     chooseBestSong(place, songs)
   })
-  playlist <- makePlaylist(trip, chosenSongs)
 
   response = {
     statusCode: 200
     body: JSON.stringify({
-      message: { trip, places, chosenSongs, playlist }
+      message: { trip, places, chosenSongs }
       input: event
     })
   }

@@ -1,36 +1,23 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import injectTapEventPlugin from 'react-tap-event-plugin'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import DestinationForm from './destForm.lsc'
-import MusicList from './musicList.lsc'
 import {
   BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom'
+import DestinationForm from './dirForm.lsc'
+import MusicList from './listMusic.lsc'
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
+injectTapEventPlugin()
 
-class App extends React.Component:
-  render() ->
-    <MuiThemeProvider>
-      <Router>
-        <div>
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/topics">Topics</Link></li>
-          </ul>
-          <hr/>
-          <Route exact path="/" component={DestinationForm}/>
-          <Route exact path="/about" component={MusicList}/>
-        </div>
-     </Router>
-   </MuiThemeProvider>
+BasicExample() =>
+  <Router>
+    <div className="container">
+      <Route exact path="/" component={DestinationForm}/>
+      <Route path="/show-list" component={MusicList}/>
+    </div>
+  </Router>
 
-export default app() ->
-  console.log('about to render...')
-  ReactDOM.render(<App />, document.querySelector('#app'))
-  console.log('should have rendered!')
+
+export default BasicExample
