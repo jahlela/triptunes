@@ -18,7 +18,6 @@ export default class DestinationForm extends React.Component:
 
   onChange(event, value) ->
     target = event.target
-    console.log(event.target.id);
     this.setState({ [target.id]: value })
 
   submit() ->
