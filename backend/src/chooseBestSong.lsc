@@ -20,9 +20,10 @@ export default chooseBestSong(place, songs) -/>
       trackID = track.id
       trackName = track.name
       trackPop = track.popularity
+      albumImage = track.album.images[0].url
 
       // push all songs into allSongs
-      allSongs.push({ trackID, trackName, trackPop })
+      allSongs.push({ trackID, trackName, trackPop, albumImage })
 
   // find most popular song from allSongs
   mostPopularSong = allSongs~sortBy('trackPop')~reverse()[0]
