@@ -12,9 +12,7 @@ processTrip(origin, destination) -/>
   console.log({ origin, destination })
   tripCoordinates <- getTrip(origin, destination)
 
-  tripPlaces <- getPlacesFromTrip(tripCoordinates)
-
-  placeNames = union([origin, destination], tripPlaces)
+  placeNames <- getPlacesFromTrip(tripCoordinates)
 
   places <- Promise.all(placeNames.map((placeName) -/> {
     console.log('')

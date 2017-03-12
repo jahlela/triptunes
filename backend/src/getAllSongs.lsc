@@ -28,6 +28,11 @@ export default getAllSongs(place) -/>
       .text()
       ~cleanStr()
 
-    console.log({ trackTitle, artistName, place })
-    { trackTitle, artistName, place }
+    lyricText = $(this)
+      .find('.lyric-body')
+      .text()
+      .trim()
+
+    console.log({ trackTitle, artistName, place, lyricText })
+    { trackTitle, artistName, lyricText }
   })~toArray()

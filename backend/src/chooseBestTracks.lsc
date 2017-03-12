@@ -9,7 +9,7 @@ export default chooseBestTracks(place, songs) -/>
   allSongs = []
 
   for song of songs:
-    { trackTitle, artistName } = song
+    { trackTitle, artistName, lyricText } = song
     songQuery = encodeURI(`https://api.spotify.com/v1/search?q=track:${trackTitle} artist:${artistName}&type=track`)
 
     // grab JSON from Spotify query
@@ -22,7 +22,7 @@ export default chooseBestTracks(place, songs) -/>
       albumImage = track.album?.images?[0]?.url or ''
 
       // push all songs into allSongs
-      allSongs.push({ place, id, uri, name, popularity, artistName, albumImage })
+      allSongs.push({ place, id, uri, name, popularity, artistName, albumImage, lyricText })
 
   // find most popular song from allSongs
   mostPopularSongs = allSongs
