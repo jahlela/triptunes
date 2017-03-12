@@ -1,0 +1,18 @@
+import React from 'react'
+import CircularProgress from 'material-ui/CircularProgress';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+
+export default class SubmitButton extends React.Component:
+  render() ->
+    if this.props.isLoading:
+      <MuiThemeProvider>
+        <CircularProgress size={60} thickness={7} />
+      </MuiThemeProvider>
+    else:
+      <button id="submit" className="btn primary-btn" label="Submit" onClick={this.props.onClick}>
+        Submit
+      </button>
+SubmitButton.propTypes = {
+  isLoading: React.PropTypes.bool,
+  onClick: React.PropTypes.func
+}
