@@ -1,5 +1,6 @@
 import 'babel-polyfill'
 
+import { union } from 'lodash'
 
 import getTrip from './getTrip'
 import getPlacesFromTrip from './getPlacesFromTrip'
@@ -10,18 +11,22 @@ import makePlaylist from './makePlaylist'
 
 module.exports.hello(event, context, callback) -/>
   { origin, destination } = event
-  trip <- getTrip(origin, destination)
-  places <- getPlacesFromTrip(trip)
+
+  tripCoordinates <- getTrip(origin, destination)
+
+  tripPlaces <- getPlacesFromTrip(tripCoordinates)
+
+  places = union([origin, destination], tripPlaces)
+
   chosenSongs <- places.map((place) -/> {
     songs <- getAllSongs(place)
-    console.log({songs})
     chooseBestSong(place, songs)
   })
 
   response = {
     statusCode: 200
     body: JSON.stringify({
-      message: { trip, places, chosenSongs }
+      message: { tripCoordinates, places, chosenSongs }
       input: event
     })
   }

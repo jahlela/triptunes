@@ -1,6 +1,8 @@
 export default [
   {
-    place: 'Some Place'
+    place: {
+      name: 'Some Place'
+    }
     track: {
       id: '123'
       uri: 'spotify:track:123'
@@ -10,7 +12,9 @@ export default [
     }
   }
   {
-    place: 'Some Other Place'
+    place: {
+      name: 'Some Other Place'
+    }
     track: {
       id: '1234'
       uri: 'spotify:track:1234'
@@ -20,7 +24,9 @@ export default [
     }
   }
   {
-    place: 'Some Third Place'
+    place: {
+      name: 'Some Third Place'
+    }
     track: {
       id: '12345'
       uri: 'spotify:track:12345'

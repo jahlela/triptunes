@@ -1,0 +1,7 @@
+import maps from '@google/maps'
+
+
+export default maps.createClient({
+  key: process.env.GOOGLE_MAPS_KEY
+  Promise
+})
