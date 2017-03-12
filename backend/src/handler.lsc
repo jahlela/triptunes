@@ -17,7 +17,7 @@ module.exports.hello(event, context, callback) -/>
     console.log({songs})
     chooseBestSong(place, songs)
   })
-  playlist <- makePlaylist(chosenSongs)
+  playlist <- makePlaylist(trip, chosenSongs)
 
   response = {
     statusCode: 200
