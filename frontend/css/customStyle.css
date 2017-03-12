@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Playball');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body {
+    background: url(https://images.pexels.com/photos/126313/pexels-photo-126313.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    font-family: 'Lato', cursive;
+}
+
+.mainApp {
+    display: block;
+    height: 100%;
+    position: relative;
+}
+
+.mainApp::after {
+    content: "";
+    background: url(https://images.pexels.com/photos/126313/pexels-photo-126313.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb) no-repeat center center fixed;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.mainTitle {
+    text-align: center;
+    color: white;
+    font-family: 'Playball', cursive;
+}
+
+
+label {
+    color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.mainForm {
+    margin: 20% 25% 0;
+    padding: 20px;
+    width: 50%;
+    background: rgba(255, 255, 255, .7);
+}
+
+button#submit {
+    background-color: #aed581;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.formContents {
+    width: 100%;
+}
