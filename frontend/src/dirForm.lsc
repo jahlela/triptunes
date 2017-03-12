@@ -3,7 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import TextField from 'material-ui/TextField'
 import { browserHistory } from 'react-router'
-import { getSongsForOrigDest } from './api'
+import { getSongsForOrigDest } from './api.lsc'
 
 export default class DestinationForm extends React.Component:
   constructor(props) ->

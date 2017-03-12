@@ -5,8 +5,8 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import DestinationForm from './dirForm'
-import MusicList from './listMusic'
+import DestinationForm from './dirForm.lsc'
+import MusicList from './listMusic.lsc'
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin()
