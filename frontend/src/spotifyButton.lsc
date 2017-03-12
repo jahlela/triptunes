@@ -1,0 +1,29 @@
+import React from 'react'
+import RaisedButton from 'material-ui/RaisedButton'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import fetch from 'isomorphic-fetch'
+
+export default class SpotifyButton extends React.Component:
+  stepOne() ->
+      return 'https://accounts.spotify.com/authorize?client_id="813cec32dc524272859ed7d720d92a02"&response_type'
+      + '"token"&redirect_uri="http:%2F%2Flocalhost:5000%2F#%2Fshow-list"'
+
+  stepTwo() ->
+    quarys = this.props.quarys
+    this.token = quarys.access_token
+    this.token_type = quarys.token_type
+    if !this.token and quarys.error:
+      alert(quarys.error)
+
+  render() ->
+    style = { margin: 12 }
+    <div>
+      <MuiThemeProvider>
+        <a href={this.stepOne()} target="_blank">
+          <RaisedButton label="Get Playlist" primary={true} style={style} />
+        </a>
+      </MuiThemeProvider>
+    </div>
+SpotifyButton.propTypes = {
+  quarys: React.PropTypes.object,
+}
