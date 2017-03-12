@@ -3,7 +3,8 @@ import { isEmpty, union } from 'lodash'
 import processTrip from './processTrip'
 
 module.exports.hello(event, context, callback) -/>
-  { queryStringParameters: { origin, destination } } = event
+  query = event?.queryStringParameters or {}
+  { origin, destination } = query
 
   if origin~isEmpty() or destination~isEmpty():
     callback('Specify origin and destination via GET; got: ' + JSON.stringify({event}))

@@ -9,7 +9,7 @@
     "build:lsc": "babel backend/src --out-dir backend/lsc --plugins=lightscript -x .lsc",
     "build:env": "babel backend/lsc --out-dir backend/dist --presets=env",
     "build:backend": "npm run build:lsc && npm run build:env",
-    "backend": "npm run build:backend && SLS_DEBUG=* sls offline start",
+    "backend": "npm run build:backend && SLS_DEBUG=* sls offline --noTimeout start",
     "dev:backend": "./node_modules/.bin/nodemon --exec 'npm run backend' --watch backend/src --ext lsc",
     "build": "npm run build:client && npm run build:backend",
     "dev": "webpack --watch",
