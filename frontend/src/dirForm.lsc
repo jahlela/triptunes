@@ -24,8 +24,13 @@ export default class DestinationForm extends React.Component:
 
   render() ->
     <div className="mainForm">
-      <div className="row">
-        <div className="formContents col-md-4 col-md-offset-4">
+      <div className="originRow row">
+        <div className="col-md-8 col-md-offset-2">
+            <p>Enter your trip information to generate a playlist!</p>
+        </div>
+      </div>
+      <div className="originRow row">
+        <div className="col-md-4 col-md-offset-3">
           <MuiThemeProvider>
             <TextField
               id="origin"
@@ -38,9 +43,9 @@ export default class DestinationForm extends React.Component:
           </MuiThemeProvider>
         </div>
       </div>
-      <div className="row">
-        <div className="formContents col-md-4 col-md-offset-4">
-          <MuiThemeProvider>
+      <div className="destinationRow row">
+        <div className="col-md-8 col-md-offset-3">
+          <MuiThemeProvider className="formContents">
             <TextField
               id="destination"
               label="Default"
@@ -51,15 +56,11 @@ export default class DestinationForm extends React.Component:
           </MuiThemeProvider>
         </div>
       </div>
-      <div className="row">
-        <div className="col-md-4 col-md-offset-4">
-          <MuiThemeProvider>
-            <RaisedButton
-              id="submit"
-              label="Submit"
-              onClick={this.submit}
-            />
-          </MuiThemeProvider>
+      <div className="submitRow row">
+        <div>
+          <button id="submit" className="btn primary-btn" label="Submit" onClick={this.submit}>
+            Submit
+          </button>
         </div>
       </div>
     </div>
