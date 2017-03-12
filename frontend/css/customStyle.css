@@ -2,11 +2,11 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
 body {
-    background: url(https://images.pexels.com/photos/126313/pexels-photo-126313.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb) no-repeat center center fixed;
+    /*background: url(https://images.pexels.com/photos/126313/pexels-photo-126313.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-size: cover;*/
 
     font-family: 'Lato', cursive;
 }
@@ -35,7 +35,6 @@ body {
     font-family: 'Playball', cursive;
 }
 
-
 label {
     color: rgba(0, 0, 0, 0.6) !important;
 }
@@ -47,12 +46,23 @@ label {
     background: rgba(255, 255, 255, .7);
 }
 
-button#submit {
+.submitRow {
+  margin: 25px 0;
+  text-align: center;
+}
+
+button #submit {
     background-color: #aed581;
     border-radius: 15px;
     margin: 20px 0;
 }
 
+button#submit:hover {
+    background-color: #7cb43c;
+}
+
+/*
 .formContents {
     width: 100%;
 }
+*/
