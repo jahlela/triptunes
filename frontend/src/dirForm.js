@@ -3,8 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from 'react-router';
-import axios from 'axios';
-
+import { getSongsForOrigDest } from './api'
 
 export default class DestinationForm extends React.Component {
   constructor(props) {
@@ -18,22 +17,10 @@ export default class DestinationForm extends React.Component {
     this.setState({[target.name.id]: value});
   }
   submit() {
-    this.props.history.push('./show-list');
-    //  this.context.router.push('/show-list')
-    //  browserHistory.push('/show-list');
-    }
-  ajax(currentLocation, destination) {
-    axios.post('/getMusic', {
-      currentLocation,
-      destination,
-      lastName: 'Flintstone'
+    getSongsForOrigDest('San Francisco', 'Seattle').then((result) => {
+      console.log(result)
+      this.props.history.push('./show-list');
     })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
   }
   render() {
     return (
