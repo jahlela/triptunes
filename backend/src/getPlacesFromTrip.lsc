@@ -1,2 +1,20 @@
-export default getPlacesFromTrip() ->
-  [{}]
+import { flatten, uniq } from 'lodash'
+import mapsClient from './googleMapsClient'
+
+
+coordinatesToPlace(coordinates) -/>
+  response <- mapsClient.reverseGeocode({latlng: coordinates}).asPromise()
+  results = response.json.results
+  // console.log(results)
+  components = flatten(results.map(result -> result.address_components))
+  components
+    .filter(component -> component.types.includes('locality'))
+    .map(component -> component.long_name)
+
+
+export default getPlacesFromTrip(coordinates_list) -/>
+  places <- [
+    for coordinates of coordinates_list:
+      coordinatesToPlace(coordinates)
+  ]
+  uniq(flatten(places))
