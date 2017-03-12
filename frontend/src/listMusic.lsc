@@ -5,6 +5,8 @@ import TextField from 'material-ui/TextField'
 import url from 'url'
 import { browserHistory } from 'react-router'
 import fakeResponse from './fakeResponse.lsc'
+import MainTitle from "./mainTitle.lsc"
+import SpotifyButton from './spotifyButton.lsc'
 
 SpotifyEmbed({ uri }) ->
   src = `https://embed.spotify.com/?uri=${uri}`
@@ -57,6 +59,7 @@ export default class ListMusic extends React.Component:
       margin: 12
     }
     <div className="container">
+      <MainTitle/>
       <div className="row">
         <div className="col-md-6">
           <div className="hover-box">

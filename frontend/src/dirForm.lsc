@@ -2,6 +2,8 @@ import React from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import TextField from 'material-ui/TextField'
+import MainTitle from './mainTitle.lsc'
+import SpotifyButton from './spotifyButton.lsc'
 import { browserHistory } from 'react-router'
 import { getSongsForOrigDest } from './api.lsc'
 
@@ -14,21 +16,39 @@ export default class DestinationForm extends React.Component:
 
   onChange(event, value) ->
     target = event.target
-    this.setState({ [target.id]: event.target.value })
+    console.log(event.target.id);
+    this.setState({ [target.id]: value })
 
   submit() ->
-    { origin = 'Los Angeles', destination = 'San Francisco' } = this.state
-    getSongsForOrigDest(origin, destination)
-      .then(({ message: { places }}) => {
-        console.log({ places })
-        localStorage.setItem('places', JSON.stringify(places))
-        this.props.history.push('./show-list')
-      })
+    const text = this.validateForm();
+    console.log(text);
+    if text:
+      alert(text);
+    else
+      { origin = 'Los Angeles', destination = 'San Francisco' } = this.state
+      getSongsForOrigDest(origin, destination)
+        .then(({ message: { places }}) => {
+          console.log({ places })
+          localStorage.setItem('places', JSON.stringify(places))
+          this.props.history.push('./show-list')
+        })
+  
+  validateForm() ->
+    s = this.state
+    console.log(s.origin);
+    if s.origin == '' and s.destination == '':
+       "Please select an origin and destination"
+    elif s.origin = '':
+       "Please select a origin"
+    elif s.destination == '':
+       "Please select a destination"
+    else: false
 
   render() ->
     <div className="mainForm">
       <div className="originRow row">
         <div className="col-md-8 col-md-offset-2">
+            <MainTitle/>
             <p>Enter your trip information to generate a playlist!</p>
         </div>
       </div>
@@ -37,11 +57,9 @@ export default class DestinationForm extends React.Component:
           <MuiThemeProvider>
             <TextField
               id="origin"
-              label="Default"
               floatingLabelText="Origin"
               value={this.state.origin}
               onChange={this.onChange}
-              className="center"
             />
           </MuiThemeProvider>
         </div>
@@ -51,7 +69,6 @@ export default class DestinationForm extends React.Component:
           <MuiThemeProvider className="formContents">
             <TextField
               id="destination"
-              label="Default"
               floatingLabelText="Destination"
               value={this.state.destination}
               onChange={this.onChange}

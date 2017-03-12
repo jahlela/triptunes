@@ -14,7 +14,7 @@ body {
 
 .mainTitle {
     text-align: center;
-    color: white;
+    color: black;
     font-family: 'Playball', cursive;
 }
 
@@ -26,7 +26,7 @@ label {
     margin: 20% 25% 0;
     padding: 20px;
     width: 50%;
-    background: rgba(255, 255, 255, .7);
+    background: rgba(255, 255, 255, .9);
 }
 
 .submitRow {
@@ -40,11 +40,13 @@ label {
 }
 
 button#submit {
-    background-color: #aed581;
+    background-color: rgb(0,188,212);
+    color: white;
 }
 
-button#submit:hover {
-    background-color: #7cb43c;
+button#submit:hover, button#submit:focus {
+    background-color:rgb(0, 144, 163);
+    outline:0;
 }
 
 /*
