@@ -4,6 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import TextField from 'material-ui/TextField'
 import MainTitle from './mainTitle.lsc'
 import SpotifyButton from './spotifyButton.lsc'
+import SubmitButton from './submitButton.lsc'
 import { browserHistory } from 'react-router'
 import { getSongsForOrigDest } from './api.lsc'
 import { isEmpty } from 'lodash'
@@ -13,7 +14,7 @@ export default class DestinationForm extends React.Component:
     super(props)
     this.onChange = this.onChange.bind(this)
     this.submit = this.submit.bind(this)
-    this.state = { origin: '', destination: '' }
+    this.state = { origin: '', destination: '', isLoading:false }
 
   onChange(event, value) ->
     target = event.target
@@ -24,6 +25,7 @@ export default class DestinationForm extends React.Component:
     if text:
       alert(text)
     else:
+      this.setState({ isLoading:true })
       { origin = 'Los Angeles', destination = 'San Francisco' } = this.state
       getSongsForOrigDest(origin, destination)
         .then(({ message: { places }}) => {
@@ -46,7 +48,6 @@ export default class DestinationForm extends React.Component:
     elif destination~isEmpty():
       "Please select a destination"
     else: false
-
   render() ->
     <div className="mainForm">
       <div className="originRow row">
@@ -81,9 +82,7 @@ export default class DestinationForm extends React.Component:
       </div>
       <div className="submitRow row">
         <div>
-          <button id="submit" className="btn primary-btn" label="Submit" onClick={this.submit}>
-            Submit
-          </button>
+          <SubmitButton isLoading={this.state.isLoading} onClick={this.submit}/>
         </div>
       </div>
     </div>
