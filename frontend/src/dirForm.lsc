@@ -31,7 +31,8 @@ export default class DestinationForm extends React.Component:
         .then(({ message: { places }}) => {
           console.log({ places })
           if not places?.length:
-            alert('No tracks found 😭')
+            alert('No tracks found 😭  Please try another trip')
+            this.setState({ isLoading: false })
             return
           localStorage.setItem('places', JSON.stringify(places))
           localStorage.setItem('origin', origin)

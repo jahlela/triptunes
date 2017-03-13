@@ -3,6 +3,8 @@ Use TripTunes to create a Spotify playlist of songs that mention towns along you
 
 ## Dev
 
+Create a `secrets.json` with `{"GOOGLE_MAPS_API_KEY": "the secret key"}`.
+
     npm install
     npm run dev
 
@@ -10,9 +12,15 @@ In a separate tab:
 
     npm run serve:client
 
-## Invoke backend for local development
+In another separate tab:
 
     npm run dev:backend
+
+To deploy:
+
+    sls deploy
+
+(you need aws credentials for this)
 
 ## APIs and Tools
 Syntax: http://www.lightscript.org/
