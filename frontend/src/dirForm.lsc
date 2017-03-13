@@ -28,7 +28,12 @@ export default class DestinationForm extends React.Component:
       getSongsForOrigDest(origin, destination)
         .then(({ message: { places }}) => {
           console.log({ places })
+          if not places?.length:
+            alert('No tracks found 😭')
+            return
           localStorage.setItem('places', JSON.stringify(places))
+          localStorage.setItem('origin', origin)
+          localStorage.setItem('destination', destination)
           this.props.history.push('./show-list')
         })
 

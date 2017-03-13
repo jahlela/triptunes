@@ -1,15 +1,28 @@
-import { flatten, uniq } from 'lodash'
+import { flatten, uniqBy } from 'lodash'
 import mapsClient from './googleMapsClient'
 
 
 coordinatesToPlace(coordinates) -/>
   response <- mapsClient.reverseGeocode({latlng: coordinates}).asPromise()
   results = response.json.results
-  // console.log(results)
-  components = flatten(results.map(result -> result.address_components))
-  components
+  // console.dir(results, {depth: null})
+
+  components = results
+    .map(result -> result.address_components)
+    ~flatten()
+
+  localities = components
     .filter(component -> component.types.includes('locality'))
     .map(component -> component.long_name)
+
+  state = components
+    .filter(component -> component.types.includes('administrative_area_level_1'))
+    .map(component -> component.short_name)
+    .0
+
+  localities.map(locality =>
+    { name: `${locality}, ${state}` }
+  )
 
 
 export default getPlacesFromTrip(coordinates_list) -/>
@@ -17,4 +30,7 @@ export default getPlacesFromTrip(coordinates_list) -/>
     for coordinates of coordinates_list:
       coordinatesToPlace(coordinates)
   ]
-  uniq(flatten(places))
+
+  places
+    ~flatten()
+    ~uniqBy('name')

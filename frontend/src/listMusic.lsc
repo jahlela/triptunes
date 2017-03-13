@@ -38,8 +38,8 @@ Lyrics({ lyrics }) ->
   lines = lyrics.split(/(\r\n|\n)/)
 
   <blockquote className="lyrics-quote">
-    {lines.map(text =>
-      <p>{text}</p>
+    {lines.map((text, i) =>
+      <p key={i}>{text}</p>
     )}
   </blockquote>
 
@@ -63,7 +63,17 @@ TrackRow({ track: { tracks, place } }) ->
 
 export default class ListMusic extends React.Component:
   render() ->
+    // if junk got in there, clean it out
+    try:
+      JSON.parse(localStorage.getItem('places'))
+    catch err:
+      localStorage.clear()
+
+
     tracks = JSON.parse(localStorage.getItem('places') or '{}') or fakeResponse
+    origin = localStorage.getItem('origin') or 'San Francisco'
+    destination = localStorage.getItem('destination') or 'Los Angeles'
+    waypoints = tracks.map(track => track.place.name) or []
 
     style = {
       margin: 12
@@ -74,9 +84,9 @@ export default class ListMusic extends React.Component:
         <div className="col-md-6">
           <div className="hover-box">
             <GoogleMapsEmbed
-              origin='Los Angeles, CA'
-              destination='San Francisco, CA'
-              waypoints={['Monterey']}
+              origin={origin}
+              destination={destination}
+              waypoints={waypoints}
             />
           </div>
         </div>

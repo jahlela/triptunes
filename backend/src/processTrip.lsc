@@ -9,24 +9,20 @@ import makePlaylist from './makePlaylist'
 
 processTrip(origin, destination) -/>
   console.log({ origin, destination })
-  console.log({ origin, destination })
   tripCoordinates <- getTrip(origin, destination)
 
-  placeNames <- getPlacesFromTrip(tripCoordinates)
+  let places <- getPlacesFromTrip(tripCoordinates)
 
-  places <- Promise.all(placeNames.map((placeName) -/> {
-    console.log('')
-    console.log('')
-    console.log({placeName})
-    console.log('----------')
-    console.log('')
+  now places <- Promise.all(places.map((place) -/> {
     try {
-      songs <- getAllSongs(placeName)
-      console.log({ placeName, songs })
-      bestTracks <- chooseBestTracks(placeName, songs)
+      songs <- getAllSongs(place.name)
+      bestTracks <- chooseBestTracks(place.name, songs)
+      if not bestTracks?.length: return null
+
       return {
         place: {
-          name: placeName
+          name: place.name
+          id: place.id
         }
         tracks: bestTracks
       }
@@ -35,6 +31,8 @@ processTrip(origin, destination) -/>
       return null
     }
   }).filter(Boolean))
+
+  now places = places.filter(Boolean)
 
   { places }
 

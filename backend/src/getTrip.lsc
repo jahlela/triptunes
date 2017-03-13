@@ -1,6 +1,6 @@
 import 'babel-polyfill'
 
-import { flatten } from 'lodash'
+import { flatten, last } from 'lodash'
 
 import mapsClient from './googleMapsClient'
 
@@ -21,5 +21,9 @@ export default getTrip(origin, destination) -/>
   // Drop steps less than 3km in length
   longSteps = steps.filter(step -> step.distance.value > 3000)
 
-  // We care about the start locations
-  longSteps.map(step => step.start_location)
+  lastStep = longSteps~last().end_location
+
+  // We care about the start locations, and the end of the last step
+  longSteps
+    .map(step => step.start_location)
+    .concat([lastStep])
