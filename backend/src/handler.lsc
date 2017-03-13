@@ -23,6 +23,7 @@ module.exports.hello(event, context, callback) -/>
     }
     body: JSON.stringify({
       message
+      input: event
     })
   }
 

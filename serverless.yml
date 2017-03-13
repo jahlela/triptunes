@@ -20,6 +20,9 @@ service: triptunes # NOTE: update this with your service name
 provider:
   name: aws
   runtime: nodejs4.3
+  environment:
+    GOOGLE_MAPS_API_KEY: ${file(./secrets.json):GOOGLE_MAPS_API_KEY}
+
 
 # you can overwrite defaults here
 #  stage: dev
