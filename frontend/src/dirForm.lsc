@@ -52,7 +52,7 @@ export default class DestinationForm extends React.Component:
     <div className="mainForm">
       <div className="originRow row">
         <div className="col-md-8 col-md-offset-2">
-            <MainTitle/>
+            <MainTitle customClass="blackTitle"/>
             <p>Enter your trip information to generate a playlist!</p>
         </div>
       </div>
