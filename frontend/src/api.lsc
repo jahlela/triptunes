@@ -1,7 +1,9 @@
 import fetch from 'isomorphic-fetch'
 import url from 'url'
 
-serverlessUrl = 'http://localhost:3000/hello'
+serverlessUrl =
+  if window.location.hostname == 'localhost': 'http://localhost:3000/hello'
+  else: 'https://dp5otq7dq1.execute-api.us-east-1.amazonaws.com/dev/hello'
 
 export getSongsForOrigDest(origin, destination) ->
   params = url.format({ query: { origin, destination } })
