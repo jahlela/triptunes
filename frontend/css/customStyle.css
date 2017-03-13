@@ -22,6 +22,15 @@ label {
   color: rgba(0, 0, 0, 0.6) !important;
 }
 
+.whiteTitle {
+  color: white;
+  margin-bottom: 50px;
+}
+
+.blackTitle {
+  color: black;
+}
+
 .mainForm {
   margin: 20% 25% 0;
   padding: 20px;
@@ -32,6 +41,10 @@ label {
 .submitRow {
   margin: 25px 0;
   text-align: center;
+}
+
+.leftBox, .rightBox {
+  margin-bottom: 20px;
 }
 
 .lyrics-quote {
@@ -61,5 +74,5 @@ button#submit:hover, button#submit:focus {
 }
 
 .mainResultsContainer {
-  margin-top: 100px;
+  margin-top: 50px;
 }

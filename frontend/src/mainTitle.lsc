@@ -5,12 +5,19 @@ import { browserHistory } from 'react-router'
 export default class MainTitle extends React.Component:
 
   render() ->
+    colorClass = "mainTitle " + this.props.customClass
+
     <div>
       <div className="row">
         <div className="col-md-8 col-md-offset-2">
-          <h1 className="mainTitle">
+          <h1 className={ colorClass }>
             TripTunes
           </h1>
         </div>
       </div>
     </div>
+
+
+MainTitle.propTypes = {
+  customClass: React.PropTypes.string
+}
