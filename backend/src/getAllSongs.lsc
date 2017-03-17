@@ -17,7 +17,7 @@ export default getAllSongs(place) -/>
   $ = cheerio.load(html)
   sections = $('.sec-lyric')
 
-  sections.map((i, element) -> {
+  sections.map(() -> {
     trackTitle = $(this)
       .find('.lyric-meta-title')
       .text()

@@ -1,12 +1,7 @@
 import React from 'react'
-import RaisedButton from 'material-ui/RaisedButton'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import TextField from 'material-ui/TextField'
 import url from 'url'
-import { browserHistory } from 'react-router'
 import fakeResponse from './fakeResponse.lsc'
 import MainTitle from "./mainTitle.lsc"
-import SpotifyButton from './spotifyButton.lsc'
 
 SpotifyEmbed({ uri }) ->
   src = `https://embed.spotify.com/?uri=${uri}`
@@ -61,7 +56,7 @@ TrackRow({ track: { tracks, place } }) ->
     </td>
   </tr>
 
-export default class MusicList extends React.Component:
+export default class MusicList extends React.Component {
   render() ->
     // if junk got in there, clean it out
     try:
@@ -75,9 +70,6 @@ export default class MusicList extends React.Component:
     destination = localStorage.getItem('destination') or 'Los Angeles'
     waypoints = tracks.map(track => track.place.name) or []
 
-    style = {
-      margin: 12
-    }
     <div className="container mainResultsContainer">
       <MainTitle customClass="whiteTitle"/>
       <div className="row">
@@ -116,3 +108,4 @@ export default class MusicList extends React.Component:
         </div>
       </div>
     </div>
+}

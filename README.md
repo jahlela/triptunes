@@ -22,6 +22,10 @@ To deploy:
 
 (you need aws credentials for this)
 
+To lint:
+
+    npm run lint
+
 ## APIs and Tools
 Syntax: http://www.lightscript.org/
 

@@ -1,5 +1,5 @@
 import 'babel-polyfill'
-import { isEmpty, union } from 'lodash'
+import { isEmpty } from 'lodash'
 import processTrip from './processTrip'
 
 module.exports.hello(event, context, callback) -/>
@@ -10,9 +10,7 @@ module.exports.hello(event, context, callback) -/>
     callback('Specify origin and destination via GET; got: ' + JSON.stringify({event}))
     return
 
-  // whoops lightscript problem, should just be `<!-` not `<- <!-`, but this works
-  // (<!- wraps it in a try/catch)
-  message <- <!- processTrip(origin, destination)
+  message <!- processTrip(origin, destination)
   console.log('got message', message)
 
   response = {
