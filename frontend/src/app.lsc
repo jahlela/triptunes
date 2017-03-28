@@ -1,11 +1,6 @@
 import React from 'react'
 import injectTapEventPlugin from 'react-tap-event-plugin'
-import {
-  HashRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
-import MainTitle from './mainTitle.lsc'
+import { HashRouter as Router, Route } from 'react-router-dom'
 import DestinationForm from './dirForm.lsc'
 import MusicList from './listMusic.lsc'
 // Needed for onTouchTap

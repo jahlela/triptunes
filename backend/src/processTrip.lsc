@@ -1,10 +1,7 @@
-import { union } from 'lodash'
-
 import getTrip from './getTrip'
 import getPlacesFromTrip from './getPlacesFromTrip'
 import getAllSongs from './getAllSongs'
 import chooseBestTracks from './chooseBestTracks'
-import makePlaylist from './makePlaylist'
 
 
 processTrip(origin, destination) -/>

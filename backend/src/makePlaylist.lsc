@@ -27,6 +27,6 @@ addTracksToPlaylist(playlistId, uris) -/>
   <- fetch(url, { method, headers, body })
 
 
-export default makePlaylist(trip, songs) -/>
+export default makePlaylist(trip, tracks) -/>
   playlistId <- createPlaylist(trip.name)
   <- addTracksToPlaylist(playlistId, [ for track of tracks: track.uri ])

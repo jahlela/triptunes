@@ -18,7 +18,7 @@ coordinatesToPlace(coordinates) -/>
   state = components
     .filter(component -> component.types.includes('administrative_area_level_1'))
     .map(component -> component.short_name)
-    .0
+    .0 // eslint-disable-line no-unexpected-multiline
 
   localities.map(locality =>
     { name: `${locality}, ${state}` }
@@ -26,10 +26,7 @@ coordinatesToPlace(coordinates) -/>
 
 
 export default getPlacesFromTrip(coordinates_list) -/>
-  places <- [
-    for coordinates of coordinates_list:
-      coordinatesToPlace(coordinates)
-  ]
+  places <- Promise.all(coordinates_list.map(coordinatesToPlace))
 
   places
     ~flatten()
