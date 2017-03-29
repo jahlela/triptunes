@@ -26,7 +26,7 @@ coordinatesToPlace(coordinates) -/>
 
 
 export default getPlacesFromTrip(coordinates_list) -/>
-  places <- Promise.all(coordinates_list.map(coordinatesToPlace))
+  places <- [for elem coords in coordinates_list: coordinatesToPlace(coords) ]
 
   places
     ~flatten()

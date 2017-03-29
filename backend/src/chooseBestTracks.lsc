@@ -8,7 +8,7 @@ export default chooseBestTracks(place, songs) -/>
   // https://api.spotify.com/v1/search?q=track:{trackTitle}%20artist:{artistName}&type=track
   allSongs = []
 
-  for song of songs:
+  for elem song in songs:
     { trackTitle, artistName, lyricText } = song
     songQuery = encodeURI(`https://api.spotify.com/v1/search?q=track:${trackTitle} artist:${artistName}&type=track`)
 
@@ -17,7 +17,7 @@ export default chooseBestTracks(place, songs) -/>
     responseJSON <- response.json()
     tracks = responseJSON?.tracks?.items or []
 
-    for track of tracks:
+    for elem track in tracks:
       { id, uri, name, popularity } = track
       albumImage = track.album?.images?[0]?.url or ''
 

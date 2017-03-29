@@ -29,4 +29,4 @@ addTracksToPlaylist(playlistId, uris) -/>
 
 export default makePlaylist(trip, tracks) -/>
   playlistId <- createPlaylist(trip.name)
-  <- addTracksToPlaylist(playlistId, [ for track of tracks: track.uri ])
+  <- addTracksToPlaylist(playlistId, [ for elem track in tracks: track.uri ])
